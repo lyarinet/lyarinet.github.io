@@ -1,0 +1,640 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Lyarinet.com Advanced Terminal
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Fira Mono', monospace;
+    }
+    /* Custom scrollbar for terminal */
+    .terminal::-webkit-scrollbar {
+      width: 8px;
+    }
+    .terminal::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    .terminal::-webkit-scrollbar-thumb {
+      background-color: #475569;
+      border-radius: 4px;
+    }
+    /* Blinking cursor */
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      background-color: #22c55e;
+      margin-left: 2px;
+      animation: blink 1.2s steps(2, start) infinite;
+      vertical-align: bottom;
+      height: 1em;
+    }
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+  </style>
+ </head>
+ <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+  <header class="bg-gray-800 px-4 py-3 flex items-center justify-between">
+   <div class="flex items-center space-x-3">
+    <div class="w-40 h-12 select-none" aria-label="Lyarinet.com logo" role="img" tabindex="-1">
+     <svg xmlns="http://www.w3.org/2000/svg" width="320" height="100" viewBox="0 0 320 100" class="w-full h-full">
+      <style>
+       @media (prefers-color-scheme: dark) {
+         .bg { fill: #111827; }
+         .text-primary { fill: #f3f4f6; }
+         .text-secondary { fill: #9ca3af; }
+         .circuit-lines { stroke: #374151; }
+       }
+       @media (prefers-color-scheme: light) {
+         .bg { fill: #ffffff; }
+         .text-primary { fill: #111827; }
+         .text-secondary { fill: #4b5563; }
+         .circuit-lines { stroke: #e5e7eb; }
+       }
+      </style>
+      <defs>
+       <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#2563eb" />
+        <stop offset="100%" stop-color="#7c3aed" />
+       </linearGradient>
+       <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="2" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+       </filter>
+      </defs>
+      <!-- Background with Circuit Pattern -->
+      <rect class="bg" width="320" height="100" rx="6" />
+      <!-- Circuit Board Pattern -->
+      <g class="circuit-lines" stroke-width="1" fill="none">
+       <path d="M0,30 H320 M0,70 H320 M30,0 V100 M60,0 V30 M60,70 V100 M290,0 V30 M290,70 V100" />
+       <circle cx="30" cy="30" r="3" />
+       <circle cx="30" cy="70" r="3" />
+       <circle cx="290" cy="30" r="3" />
+       <circle cx="290" cy="70" r="3" />
+      </g>
+      <!-- Logo Symbol -->
+      <g transform="translate(30, 35)">
+       <!-- Network Node Connection Symbol -->
+       <g filter="url(#glow)">
+        <!-- Main Hexagon -->
+        <path d="M15,0 L30,8.66 L30,26 L15,34.66 L0,26 L0,8.66 Z" fill="url(#mainGradient)" opacity="0.9" />
+        <!-- Connection Lines -->
+        <path d="M15,0 L15,34.66 M0,8.66 L30,26 M0,26 L30,8.66" stroke="#ffffff" stroke-width="1.5" opacity="0.7" />
+        <!-- Center Node -->
+        <circle cx="15" cy="17.33" r="3" fill="#ffffff" opacity="0.9" />
+       </g>
+       <!-- Code Elements -->
+       <g transform="translate(40, 5)">
+        <!-- Code Brackets -->
+        <path d="M0,12 L4,5 L8,7 L5,12 L8,17 L4,19 L0,12 Z" fill="url(#mainGradient)" />
+        <path d="M30,12 L26,5 L22,7 L25,12 L22,17 L26,19 L30,12 Z" fill="url(#mainGradient)" />
+       </g>
+      </g>
+      <!-- Company Name -->
+      <g transform="translate(100, 55)">
+       <text class="text-primary" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="28">
+        LYARI<tspan fill="url(#mainGradient)">NET</tspan>
+       </text>
+      </g>
+      <!-- Studio & Tagline -->
+      <g>
+       <text class="text-secondary" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="500" x="100" y="75">
+        STUDIO
+       </text>
+       <text class="text-secondary" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="400" x="160" y="75">
+        // Software Hub
+       </text>
+      </g>
+      <!-- Data Flow Animation -->
+      <g>
+       <circle cx="30" cy="30" r="1.5" fill="url(#mainGradient)">
+        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0s" />
+       </circle>
+       <circle cx="290" cy="70" r="1.5" fill="url(#mainGradient)">
+        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0.7s" />
+       </circle>
+      </g>
+     </svg>
+    </div>
+    <h1 class="text-xl font-semibold select-none">
+     Lyarinet.com Advanced Terminal
+    </h1>
+   </div>
+   <nav class="hidden sm:flex space-x-6 text-gray-300">
+    <a class="hover:text-white transition" href="#">
+     Home
+    </a>
+    <a class="hover:text-white transition" href="#">
+     Docs
+    </a>
+    <a class="hover:text-white transition flex items-center space-x-1" href="https://github.com/lyarinet" target="_blank" rel="noopener noreferrer">
+     <i class="fab fa-github fa-lg">
+     </i>
+     <span>
+      GitHub
+     </span>
+    </a>
+    <a class="hover:text-white transition" href="#">
+     About
+    </a>
+   </nav>
+   <button aria-label="Toggle menu" class="sm:hidden text-gray-300 hover:text-white focus:outline-none" id="menu-btn">
+    <i class="fas fa-bars fa-lg">
+    </i>
+   </button>
+  </header>
+  <nav aria-label="Mobile menu" class="sm:hidden bg-gray-800 px-4 py-3 space-y-2 hidden" id="mobile-menu">
+   <a class="block text-gray-300 hover:text-white transition" href="#">
+    Home
+   </a>
+   <a class="block text-gray-300 hover:text-white transition" href="#">
+    Docs
+   </a>
+   <a class="block text-gray-300 hover:text-white transition flex items-center space-x-1" href="https://github.com/lyarinet" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-github fa-lg">
+    </i>
+    <span>
+     GitHub
+    </span>
+   </a>
+   <a class="block text-gray-300 hover:text-white transition" href="#">
+    About
+   </a>
+  </nav>
+  <main class="flex-grow flex flex-col max-w-6xl mx-auto px-4 py-6 w-full">
+   <section class="mb-6">
+    <h2 class="text-3xl font-bold mb-2">
+     Lyarinet.com Advanced Terminal     </h2>
+    <p class="text-gray-300 mb-4 max-w-prose">
+     This advanced terminal supports command history, tab completion, multi-line commands, color-coded output, and more.
+     Type <code class="bg-gray-700 px-1 rounded">help</code> to get started.
+    </p>
+   </section>
+   <section aria-label="terminal" class="terminal bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col h-[520px] max-h-[520px] overflow-y-auto" id="terminal" tabindex="0" role="region" aria-live="polite" aria-atomic="false">
+    <div class="flex-grow overflow-y-auto space-y-1 text-green-400" id="output" aria-live="polite" aria-atomic="false" role="log" aria-relevant="additions">
+    </div>
+    <form autocomplete="off" class="mt-2 flex items-center space-x-2" id="input-form" spellcheck="false" aria-label="Command input form">
+     <span class="text-green-400 select-none font-semibold" id="prompt-label">
+      lyarinet.com&gt;
+     </span>
+     <textarea aria-labelledby="prompt-label" aria-multiline="true" class="flex-grow resize-none bg-gray-900 text-green-400 border border-green-600 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500 leading-relaxed max-h-24 min-h-[1.5rem]" id="command-input" placeholder="Type a command..." rows="1" spellcheck="false"></textarea>
+     <button aria-label="Submit command" class="ml-1 bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded transition flex items-center justify-center" type="submit" id="submit-btn" disabled>
+      <i class="fas fa-terminal">
+      </i>
+     </button>
+    </form>
+   </section>
+   <section class="mt-8 max-w-prose text-gray-400 text-sm">
+    <p>
+     Supported commands:
+    </p>
+    <ul class="list-disc list-inside space-y-1 mt-2">
+     <li>
+      <code>
+       help
+      </code>
+      - Show available commands
+     </li>
+     <li>
+      <code>
+       echo [text]
+      </code>
+      - Print text
+     </li>
+     <li>
+      <code>
+       date
+      </code>
+      - Show current date and time
+     </li>
+     <li>
+      <code>
+       clear
+      </code>
+      - Clear the terminal output
+     </li>
+     <li>
+      <code>
+       about
+      </code>
+      - Show info about Lyarinet.com
+     </li>
+     <li>
+      <code>
+       calc [expression]
+      </code>
+      - Calculate a math expression (supports +, -, *, /, %, ^, parentheses)
+     </li>
+     <li>
+      <code>
+       weather [city]
+      </code>
+      - Show current weather for a city (mocked data)
+     </li>
+     <li>
+      <code>
+       history
+      </code>
+      - Show command history
+     </li>
+     <li>
+      <code>
+       reverse [text]
+      </code>
+      - Reverse the given text string
+     </li>
+     <li>
+      <code>
+       uptime
+      </code>
+      - Show how long the terminal has been running
+     </li>
+     <li>
+      <code>
+       joke
+      </code>
+      - Show a random programming joke
+     </li>
+     <li>
+      <code>
+       base64 encode [text]
+      </code>
+      - Encode text to Base64
+     </li>
+     <li>
+      <code>
+       base64 decode [text]
+      </code>
+      - Decode Base64 text
+     </li>
+     <li>
+      <code>
+       clearhistory
+      </code>
+      - Clear the command history
+     </li>
+    </ul>
+   </section>
+  </main>
+  <footer class="bg-gray-800 text-gray-400 text-center py-4 text-sm select-none">
+   © 2024 Asifagaria. All rights reserved.
+  </footer>
+  <script>
+   (() => {
+      const outputEl = document.getElementById('output');
+      const inputForm = document.getElementById('input-form');
+      const commandInput = document.getElementById('command-input');
+      const submitBtn = document.getElementById('submit-btn');
+
+      // Command history
+      let history = [];
+      let historyIndex = -1;
+
+      // Terminal uptime tracking
+      const startTime = Date.now();
+
+      // Programming jokes
+      const jokes = [
+        "Why do programmers prefer dark mode? Because light attracts bugs!",
+        "A SQL query walks into a bar, walks up to two tables and asks: 'Can I join you?'",
+        "Why do Java developers wear glasses? Because they don't see sharp.",
+        "There are 10 types of people in the world: those who understand binary and those who don't.",
+        "Debugging: Being the detective in a crime movie where you are also the murderer.",
+      ];
+
+      // Tab completion data
+      const commandList = [
+        'help', 'echo', 'date', 'clear', 'about', 'calc', 'weather', 'history',
+        'reverse', 'uptime', 'joke', 'base64', 'clearhistory'
+      ];
+
+      // Mock weather data for stration
+      const mockWeatherData = {
+        'new york': { temp: 15, condition: 'Cloudy', icon: '☁️' },
+        'london': { temp: 10, condition: 'Rainy', icon: '🌧️' },
+        'paris': { temp: 18, condition: 'Sunny', icon: '☀️' },
+        'tokyo': { temp: 22, condition: 'Clear', icon: '🌤️' },
+        'sydney': { temp: 25, condition: 'Sunny', icon: '☀️' },
+      };
+
+      // Safe math expression evaluator (basic)
+      function safeEval(expr) {
+        if (!/^[0-9+\-*/%^().\s]+$/.test(expr)) {
+          throw new Error('Invalid characters in expression');
+        }
+        expr = expr.replace(/\^/g, '**');
+        return Function(`"use strict";return (${expr})`)();
+      }
+
+      // Colorize output lines by type
+      function createOutputLine(text, type = 'normal') {
+        const line = document.createElement('div');
+        line.classList.add('whitespace-pre-wrap');
+        switch (type) {
+          case 'error':
+            line.classList.add('text-red-500', 'font-semibold');
+            break;
+          case 'info':
+            line.classList.add('text-blue-400');
+            break;
+          case 'success':
+            line.classList.add('text-green-400');
+            break;
+          case 'command':
+            line.classList.add('text-green-300', 'font-semibold');
+            break;
+          case 'warning':
+            line.classList.add('text-yellow-400');
+            break;
+          default:
+            line.classList.add('text-green-400');
+        }
+        line.textContent = text;
+        return line;
+      }
+
+      // Print line to terminal output
+      function printLine(text, type = 'normal') {
+        const line = createOutputLine(text, type);
+        outputEl.appendChild(line);
+        outputEl.scrollTop = outputEl.scrollHeight;
+      }
+
+      // Print multi-line output
+      function printLines(lines, type = 'normal') {
+        lines.forEach(line => printLine(line, type));
+      }
+
+      // Base64 encode/decode helpers
+      function base64Encode(str) {
+        try {
+          return btoa(unescape(encodeURIComponent(str)));
+        } catch {
+          return null;
+        }
+      }
+      function base64Decode(str) {
+        try {
+          return decodeURIComponent(escape(atob(str)));
+        } catch {
+          return null;
+        }
+      }
+
+      // Command implementations
+      const commands = {
+        help() {
+          return [
+            'Available commands:',
+            'help - Show available commands',
+            'echo [text] - Print text',
+            'date - Show current date and time',
+            'clear - Clear the terminal output',
+            'about - Show info about Lyarinet.com',
+            'calc [expression] - Calculate a math expression (supports +, -, *, /, %, ^, parentheses)',
+            'weather [city] - Show current weather for a city (mocked data)',
+            'history - Show command history',
+            'reverse [text] - Reverse the given text string',
+            'uptime - Show how long the terminal has been running',
+            'joke - Show a random programming joke',
+            'base64 encode [text] - Encode text to Base64',
+            'base64 decode [text] - Decode Base64 text',
+            'clearhistory - Clear the command history',
+          ];
+        },
+        echo(args) {
+          if (args.length === 0) return [''];
+          return [args.join(' ')];
+        },
+        date() {
+          return [new Date().toString()];
+        },
+        clear() {
+          outputEl.innerHTML = '';
+          return [];
+        },
+        about() {
+          return [
+            'Lyarinet.com is a lightweight JavaScript framework for building reactive web apps.',
+            'This advanced terminal showcases a command interface with history, tab completion, multi-line input, and color-coded output.',
+            'Visit https://lyarinet.com for more information.',
+          ];
+        },
+        calc(args) {
+          if (args.length === 0) return ['Usage: calc [expression]'];
+          const expr = args.join(' ');
+          try {
+            const result = safeEval(expr);
+            return [`Result: ${result}`];
+          } catch (e) {
+            return [`Error: Invalid expression`];
+          }
+        },
+        weather(args) {
+          if (args.length === 0) return ['Usage: weather [city]'];
+          const city = args.join(' ').toLowerCase();
+          if (mockWeatherData[city]) {
+            const w = mockWeatherData[city];
+            return [
+              `Weather for ${city.charAt(0).toUpperCase() + city.slice(1)}:`,
+              `${w.icon}  ${w.condition}`,
+              `Temperature: ${w.temp}°C`,
+            ];
+          }
+          return [`No weather data found for "${city}"`];
+        },
+        history() {
+          if (history.length === 0) return ['No commands in history.'];
+          return history.map((cmd, i) => `${i + 1}: ${cmd}`);
+        },
+        reverse(args) {
+          if (args.length === 0) return ['Usage: reverse [text]'];
+          const text = args.join(' ');
+          const reversed = text.split('').reverse().join('');
+          return [reversed];
+        },
+        uptime() {
+          const diff = Date.now() - startTime;
+          const seconds = Math.floor(diff / 1000) % 60;
+          const minutes = Math.floor(diff / (1000 * 60)) % 60;
+          const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          let uptimeStr = '';
+          if (days) uptimeStr += `${days}d `;
+          if (hours) uptimeStr += `${hours}h `;
+          if (minutes) uptimeStr += `${minutes}m `;
+          uptimeStr += `${seconds}s`;
+          return [`Terminal uptime: ${uptimeStr}`];
+        },
+        joke() {
+          const joke = jokes[Math.floor(Math.random() * jokes.length)];
+          return [joke];
+        },
+        base64(args) {
+          if (args.length < 2) return ['Usage: base64 encode [text] OR base64 decode [text]'];
+          const action = args[0].toLowerCase();
+          const text = args.slice(1).join(' ');
+          if (action === 'encode') {
+            const encoded = base64Encode(text);
+            if (encoded === null) return ['Error: Unable to encode text'];
+            return [encoded];
+          } else if (action === 'decode') {
+            const decoded = base64Decode(text);
+            if (decoded === null) return ['Error: Invalid Base64 text'];
+            return [decoded];
+          } else {
+            return ['Usage: base64 encode [text] OR base64 decode [text]'];
+          }
+        },
+        clearhistory() {
+          history = [];
+          historyIndex = -1;
+          return ['Command history cleared.'];
+        },
+      };
+
+      // Handle command input and output
+      function handleCommand(rawInput) {
+        if (!rawInput.trim()) return;
+        printLine(`lyarinet.com> ${rawInput}`, 'command');
+
+        history.push(rawInput);
+        historyIndex = history.length;
+
+        const parts = rawInput.trim().split(/\s+/);
+        const cmd = parts[0].toLowerCase();
+        const args = parts.slice(1);
+
+        if (commands[cmd]) {
+          const result = commands[cmd](args);
+          if (result.length) {
+            printLines(result, cmd === 'help' || cmd === 'about' ? 'info' : 'normal');
+          }
+        } else if (cmd === 'base64') {
+          // base64 is a special case handled above
+          const result = commands.base64(args);
+          if (result.length) {
+            printLines(result, 'normal');
+          }
+        } else {
+          printLine(`Command not found: ${cmd}`, 'error');
+        }
+      }
+
+      // Enable/disable submit button based on input
+      function updateSubmitButton() {
+        submitBtn.disabled = commandInput.value.trim().length === 0;
+      }
+
+      // Tab completion logic
+      function tabComplete() {
+        const val = commandInput.value;
+        const cursorPos = commandInput.selectionStart;
+        const beforeCursor = val.slice(0, cursorPos);
+        const afterCursor = val.slice(cursorPos);
+
+        // Find last word before cursor
+        const match = beforeCursor.match(/(\S+)$/);
+        if (!match) return;
+
+        const fragment = match[1].toLowerCase();
+
+        // Find matches from commandList
+        const matches = commandList.filter(c => c.startsWith(fragment));
+        if (matches.length === 0) return;
+
+        // If only one match, complete it
+        if (matches.length === 1) {
+          const completion = matches[0];
+          const newVal = beforeCursor.slice(0, beforeCursor.length - fragment.length) + completion + afterCursor;
+          commandInput.value = newVal;
+          const newCursorPos = beforeCursor.length - fragment.length + completion.length;
+          commandInput.setSelectionRange(newCursorPos, newCursorPos);
+          updateSubmitButton();
+        } else {
+          // Multiple matches: show suggestions
+          printLine('Possible completions:', 'info');
+          printLines(matches, 'info');
+        }
+      }
+
+      // Auto-grow textarea height
+      function autoGrowTextarea(el) {
+        el.style.height = 'auto';
+        el.style.height = (el.scrollHeight) + 'px';
+      }
+
+      // Keyboard shortcuts and input handling
+      commandInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+          e.preventDefault();
+          if (commandInput.value.trim()) {
+            handleCommand(commandInput.value);
+            commandInput.value = '';
+            autoGrowTextarea(commandInput);
+            updateSubmitButton();
+          }
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (history.length === 0) return;
+          if (historyIndex > 0) historyIndex--;
+          commandInput.value = history[historyIndex] || '';
+          autoGrowTextarea(commandInput);
+          updateSubmitButton();
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (history.length === 0) return;
+          if (historyIndex < history.length - 1) {
+            historyIndex++;
+            commandInput.value = history[historyIndex] || '';
+          } else {
+            historyIndex = history.length;
+            commandInput.value = '';
+          }
+          autoGrowTextarea(commandInput);
+          updateSubmitButton();
+        } else if (e.key === 'Tab') {
+          e.preventDefault();
+          tabComplete();
+        }
+      });
+
+      commandInput.addEventListener('input', () => {
+        autoGrowTextarea(commandInput);
+        updateSubmitButton();
+      });
+
+      // Initialize
+      updateSubmitButton();
+      autoGrowTextarea(commandInput);
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Focus terminal on page load and print welcome message
+      window.addEventListener('load', () => {
+        const welcomeLines = [
+          'Welcome to the Lyarinet.com Advanced Terminal!',
+          'Type "help" to see a list of available commands.',
+          'Enjoy your session.',
+          '',
+        ];
+        printLines(welcomeLines, 'info');
+        commandInput.focus();
+      });
+    })();
+  </script>
+ </body>
+</html>
