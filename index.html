@@ -1,640 +1,518 @@
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Lyarinet.com Advanced Terminal
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;display=swap" rel="stylesheet"/>
-  <style>
-   body {
-      font-family: 'Fira Mono', monospace;
-    }
-    /* Custom scrollbar for terminal */
-    .terminal::-webkit-scrollbar {
-      width: 8px;
-    }
-    .terminal::-webkit-scrollbar-track {
-      background: #1e293b;
-    }
-    .terminal::-webkit-scrollbar-thumb {
-      background-color: #475569;
-      border-radius: 4px;
-    }
-    /* Blinking cursor */
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      background-color: #22c55e;
-      margin-left: 2px;
-      animation: blink 1.2s steps(2, start) infinite;
-      vertical-align: bottom;
-      height: 1em;
-    }
-    @keyframes blink {
-      to {
-        visibility: hidden;
-      }
-    }
-  </style>
- </head>
- <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
-  <header class="bg-gray-800 px-4 py-3 flex items-center justify-between">
-   <div class="flex items-center space-x-3">
-    <div class="w-40 h-12 select-none" aria-label="Lyarinet.com logo" role="img" tabindex="-1">
-     <svg xmlns="http://www.w3.org/2000/svg" width="320" height="100" viewBox="0 0 320 100" class="w-full h-full">
-      <style>
-       @media (prefers-color-scheme: dark) {
-         .bg { fill: #111827; }
-         .text-primary { fill: #f3f4f6; }
-         .text-secondary { fill: #9ca3af; }
-         .circuit-lines { stroke: #374151; }
-       }
-       @media (prefers-color-scheme: light) {
-         .bg { fill: #ffffff; }
-         .text-primary { fill: #111827; }
-         .text-secondary { fill: #4b5563; }
-         .circuit-lines { stroke: #e5e7eb; }
-       }
-      </style>
-      <defs>
-       <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#2563eb" />
-        <stop offset="100%" stop-color="#7c3aed" />
-       </linearGradient>
-       <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="2" result="blur" />
-        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-       </filter>
-      </defs>
-      <!-- Background with Circuit Pattern -->
-      <rect class="bg" width="320" height="100" rx="6" />
-      <!-- Circuit Board Pattern -->
-      <g class="circuit-lines" stroke-width="1" fill="none">
-       <path d="M0,30 H320 M0,70 H320 M30,0 V100 M60,0 V30 M60,70 V100 M290,0 V30 M290,70 V100" />
-       <circle cx="30" cy="30" r="3" />
-       <circle cx="30" cy="70" r="3" />
-       <circle cx="290" cy="30" r="3" />
-       <circle cx="290" cy="70" r="3" />
-      </g>
-      <!-- Logo Symbol -->
-      <g transform="translate(30, 35)">
-       <!-- Network Node Connection Symbol -->
-       <g filter="url(#glow)">
-        <!-- Main Hexagon -->
-        <path d="M15,0 L30,8.66 L30,26 L15,34.66 L0,26 L0,8.66 Z" fill="url(#mainGradient)" opacity="0.9" />
-        <!-- Connection Lines -->
-        <path d="M15,0 L15,34.66 M0,8.66 L30,26 M0,26 L30,8.66" stroke="#ffffff" stroke-width="1.5" opacity="0.7" />
-        <!-- Center Node -->
-        <circle cx="15" cy="17.33" r="3" fill="#ffffff" opacity="0.9" />
-       </g>
-       <!-- Code Elements -->
-       <g transform="translate(40, 5)">
-        <!-- Code Brackets -->
-        <path d="M0,12 L4,5 L8,7 L5,12 L8,17 L4,19 L0,12 Z" fill="url(#mainGradient)" />
-        <path d="M30,12 L26,5 L22,7 L25,12 L22,17 L26,19 L30,12 Z" fill="url(#mainGradient)" />
-       </g>
-      </g>
-      <!-- Company Name -->
-      <g transform="translate(100, 55)">
-       <text class="text-primary" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="28">
-        LYARI<tspan fill="url(#mainGradient)">NET</tspan>
-       </text>
-      </g>
-      <!-- Studio & Tagline -->
-      <g>
-       <text class="text-secondary" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="500" x="100" y="75">
-        STUDIO
-       </text>
-       <text class="text-secondary" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="400" x="160" y="75">
-        // Software Hub
-       </text>
-      </g>
-      <!-- Data Flow Animation -->
-      <g>
-       <circle cx="30" cy="30" r="1.5" fill="url(#mainGradient)">
-        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0s" />
-       </circle>
-       <circle cx="290" cy="70" r="1.5" fill="url(#mainGradient)">
-        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0.7s" />
-       </circle>
-      </g>
-     </svg>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyarinet — Networks & Software, Engineered</title>
+<meta name="description" content="Lyarinet builds internet infrastructure and software — fiber networks, enterprise connectivity, and cross-platform applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A1613;
+    --ink-2:#0F211C;
+    --panel:#122822;
+    --line: rgba(237,234,224,0.09);
+    --line-strong: rgba(237,234,224,0.16);
+    --amber:#E8A33D;
+    --amber-dim: rgba(232,163,61,0.16);
+    --teal:#4FD1AE;
+    --paper:#EDEAE0;
+    --muted:#9CA9A0;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --disp: 'Archivo', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* subtle circuit-grid backdrop */
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,0,0,0.55), transparent 75%);
+    opacity:0.5;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(10,22,19,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{width:34px; height:34px;}
+  .brand-name{font-family:var(--disp); font-weight:700; font-size:19px; letter-spacing:0.2px;}
+  .brand-name span{color:var(--amber);}
+  .nav-links{display:flex; gap:34px; font-size:14.5px; color:var(--muted);}
+  .nav-links a{transition:color .2s ease;}
+  .nav-links a:hover{color:var(--paper);}
+  .nav-cta{
+    font-size:14px; font-weight:500; padding:10px 20px;
+    border:1px solid var(--line-strong); border-radius:2px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{border-color:var(--amber); background:var(--amber-dim);}
+  .menu-btn{display:none; background:none; border:0; color:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; z-index:1;
+    padding:96px 0 80px;
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  .hero-eyebrow-line{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:var(--mono); font-size:12.5px; color:var(--teal);
+  }
+  .hero-eyebrow-line::before{
+    content:''; width:7px; height:7px; border-radius:50%; background:var(--teal);
+    box-shadow:0 0 0 4px rgba(79,209,174,0.15);
+  }
+  h1.headline{
+    font-family:var(--disp); font-weight:800; letter-spacing:-0.01em;
+    font-size:clamp(38px, 5.4vw, 62px); line-height:1.04;
+    max-width:620px;
+  }
+  .hero p.lede{
+    margin-top:24px; max-width:490px; color:var(--muted); font-size:17px;
+  }
+  .hero-actions{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .btn-primary, .btn-ghost{
+    font-family:var(--sans); font-weight:600; font-size:14.5px;
+    padding:14px 26px; border-radius:2px; display:inline-flex; align-items:center; gap:8px;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease;
+  }
+  .btn-primary{background:var(--amber); color:#1B1204; border:1px solid var(--amber);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--line-strong); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--paper); transform:translateY(-2px);}
+
+  .hero-stats{display:flex; gap:34px; margin-top:56px; flex-wrap:wrap;}
+  .hero-stats div{border-left:1px solid var(--line-strong); padding-left:14px;}
+  .hero-stats b{display:block; font-family:var(--mono); font-size:20px; color:var(--paper);}
+  .hero-stats span{font-size:12.5px; color:var(--muted);}
+
+  /* 3D rotating node sphere */
+  .sphere-stage{
+    position:relative; height:440px;
+    display:flex; align-items:center; justify-content:center;
+    perspective: 900px;
+  }
+  .sphere{
+    position:relative; width:340px; height:340px;
+    transform-style:preserve-3d;
+    animation: spin 22s linear infinite;
+  }
+  .tilt{
+    position:absolute; inset:0; transform-style:preserve-3d;
+    animation: tilt 9s ease-in-out infinite alternate;
+  }
+  @keyframes spin{ from{transform:rotateY(0deg);} to{transform:rotateY(360deg);} }
+  @keyframes tilt{ from{transform:rotateX(-14deg);} to{transform:rotateX(14deg);} }
+  .node{
+    position:absolute; width:8px; height:8px; border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 10px 2px rgba(232,163,61,0.55);
+    top:50%; left:50%;
+  }
+  .node.alt{ background:var(--teal); box-shadow:0 0 10px 2px rgba(79,209,174,0.5); width:6px; height:6px;}
+  .sphere-core{
+    position:absolute; top:50%; left:50%; width:70px; height:70px;
+    margin:-35px 0 0 -35px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, rgba(232,163,61,0.5), rgba(232,163,61,0.04) 70%);
+    filter: blur(2px);
+  }
+  .sphere-ring{
+    position:absolute; top:50%; left:50%; width:340px; height:340px; margin:-170px 0 0 -170px;
+    border:1px solid var(--line-strong); border-radius:50%;
+  }
+  .sphere-ring.r2{ transform: rotateX(75deg); }
+  .sphere-ring.r3{ transform: rotateY(75deg); }
+
+  @media (prefers-reduced-motion: reduce){
+    .sphere, .tilt{ animation:none; }
+  }
+
+  /* ---------- Section shell with trace rail ---------- */
+  section{ position:relative; z-index:1; padding:100px 0; }
+  .section-head{
+    display:grid; grid-template-columns: 40px 1fr; gap:0; margin-bottom:64px;
+  }
+  .rail{ position:relative; }
+  .rail::before{
+    content:''; position:absolute; left:8px; top:6px; width:1px; height:100%;
+    background:linear-gradient(to bottom, var(--amber), transparent);
+  }
+  .rail::after{
+    content:''; position:absolute; left:4px; top:2px; width:9px; height:9px;
+    border-radius:50%; background:var(--amber);
+    box-shadow:0 0 0 5px var(--amber-dim);
+  }
+  .section-tag{ font-family:var(--mono); font-size:12.5px; color:var(--teal); margin-bottom:10px; }
+  h2.section-title{
+    font-family:var(--disp); font-weight:700; font-size:clamp(28px,3.4vw,40px);
+    max-width:640px; line-height:1.12;
+  }
+  .section-sub{ color:var(--muted); max-width:560px; margin-top:16px; font-size:15.5px; }
+
+  /* Networking list */
+  .trace-list{ display:grid; grid-template-columns: 40px 1fr; }
+  .trace-item{
+    position:relative; grid-column:2; padding:28px 0 28px 28px; border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns: 220px 1fr; gap:28px;
+  }
+  .trace-item::before{
+    content:''; position:absolute; left:0; top:38px; width:9px; height:9px;
+    background:var(--ink); border:1px solid var(--teal); border-radius:50%;
+  }
+  .trace-item:first-child{border-top:1px solid var(--line);}
+  .trace-num{ font-family:var(--mono); color:var(--muted); font-size:13px; }
+  .trace-item h3{ font-family:var(--disp); font-size:20px; font-weight:600; margin-bottom:4px; }
+  .trace-item p{ color:var(--muted); font-size:14.5px; max-width:520px; }
+
+  /* Software section - asymmetric two column */
+  .dev-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:0; border-top:1px solid var(--line); }
+  .dev-cell{ padding:32px 28px; border-bottom:1px solid var(--line); border-right:1px solid var(--line); }
+  .dev-cell:nth-child(2n){ border-right:none; }
+  .dev-cell h3{ font-family:var(--disp); font-size:18.5px; font-weight:600; margin-bottom:8px; }
+  .dev-cell p{ color:var(--muted); font-size:14.5px; }
+  .dev-mark{ width:26px; height:26px; margin-bottom:18px; }
+
+  /* Platforms - faceplate */
+  .faceplate{
+    background:var(--panel); border:1px solid var(--line-strong); border-radius:6px;
+    padding:6px; display:grid; grid-template-columns: repeat(4,1fr);
+  }
+  .port{
+    padding:34px 22px; text-align:left; border-right:1px solid var(--line);
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .port:last-child{ border-right:none; }
+  .port-glyph{ width:34px; height:34px; color:var(--amber); }
+  .port h4{ font-family:var(--disp); font-size:16.5px; font-weight:600; }
+  .port .led{ display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11.5px; color:var(--teal); margin-top:auto; }
+  .port .led::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--teal); box-shadow:0 0 6px var(--teal); }
+
+  /* Stats strip */
+  .stat-strip{
+    display:grid; grid-template-columns: repeat(4,1fr);
+    border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong);
+  }
+  .stat-strip div{ padding:34px 26px; border-right:1px solid var(--line); }
+  .stat-strip div:last-child{ border-right:none; }
+  .stat-strip b{ font-family:var(--mono); font-size:32px; display:block; color:var(--amber); }
+  .stat-strip span{ font-size:13px; color:var(--muted); }
+
+  /* CTA band */
+  .cta-band{
+    text-align:left; padding:90px 0; position:relative; z-index:1;
+    border-top:1px solid var(--line);
+  }
+  .cta-band h2{ font-family:var(--disp); font-size:clamp(30px,4vw,46px); font-weight:700; max-width:620px; }
+  .cta-band .hero-actions{ margin-top:34px; }
+
+  /* Footer */
+  footer{ border-top:1px solid var(--line); padding:56px 0 34px; position:relative; z-index:1;}
+  .foot-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:40px; }
+  .foot-grid h5{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:16px; letter-spacing:0.02em;}
+  .foot-grid a, .foot-grid p{ display:block; color:var(--muted); font-size:14px; margin-bottom:10px; }
+  .foot-grid a:hover{ color:var(--paper); }
+  .foot-bottom{ margin-top:50px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; color:var(--muted); font-size:12.5px; font-family:var(--mono); flex-wrap:wrap; gap:10px;}
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns:1fr; }
+    .sphere-stage{ height:300px; }
+    .dev-grid{ grid-template-columns:1fr; }
+    .dev-cell{ border-right:none; }
+    .faceplate{ grid-template-columns: 1fr 1fr; }
+    .port{ border-bottom:1px solid var(--line); }
+    .stat-strip{ grid-template-columns: 1fr 1fr; }
+    .stat-strip div{ border-bottom:1px solid var(--line); }
+    .trace-item{ grid-template-columns:1fr; gap:8px; }
+    .foot-grid{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<header>
+  <nav>
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
+        <circle cx="8" cy="8" r="3.4" fill="#E8A33D"/>
+        <circle cx="32" cy="8" r="3.4" fill="#4FD1AE"/>
+        <circle cx="8" cy="32" r="3.4" fill="#4FD1AE"/>
+        <circle cx="32" cy="32" r="3.4" fill="#E8A33D"/>
+        <circle cx="20" cy="20" r="4.2" fill="#EDEAE0"/>
+        <path d="M8 8L20 20M32 8L20 20M8 32L20 20M32 32L20 20" stroke="#EDEAE0" stroke-width="1.2" stroke-opacity="0.5"/>
+      </svg>
+      <div class="brand-name">Lyari<span>net</span></div>
     </div>
-    <h1 class="text-xl font-semibold select-none">
-     Lyarinet.com Advanced Terminal
-    </h1>
-   </div>
-   <nav class="hidden sm:flex space-x-6 text-gray-300">
-    <a class="hover:text-white transition" href="#">
-     Home
-    </a>
-    <a class="hover:text-white transition" href="#">
-     Docs
-    </a>
-    <a class="hover:text-white transition flex items-center space-x-1" href="https://github.com/lyarinet" target="_blank" rel="noopener noreferrer">
-     <i class="fab fa-github fa-lg">
-     </i>
-     <span>
-      GitHub
-     </span>
-    </a>
-    <a class="hover:text-white transition" href="#">
-     About
-    </a>
-   </nav>
-   <button aria-label="Toggle menu" class="sm:hidden text-gray-300 hover:text-white focus:outline-none" id="menu-btn">
-    <i class="fas fa-bars fa-lg">
-    </i>
-   </button>
-  </header>
-  <nav aria-label="Mobile menu" class="sm:hidden bg-gray-800 px-4 py-3 space-y-2 hidden" id="mobile-menu">
-   <a class="block text-gray-300 hover:text-white transition" href="#">
-    Home
-   </a>
-   <a class="block text-gray-300 hover:text-white transition" href="#">
-    Docs
-   </a>
-   <a class="block text-gray-300 hover:text-white transition flex items-center space-x-1" href="https://github.com/lyarinet" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-github fa-lg">
-    </i>
-    <span>
-     GitHub
-    </span>
-   </a>
-   <a class="block text-gray-300 hover:text-white transition" href="#">
-    About
-   </a>
+    <div class="nav-links">
+      <a href="#networking">Networking</a>
+      <a href="#software">Software</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Talk to us</a>
   </nav>
-  <main class="flex-grow flex flex-col max-w-6xl mx-auto px-4 py-6 w-full">
-   <section class="mb-6">
-    <h2 class="text-3xl font-bold mb-2">
-     Lyarinet.com Advanced Terminal     </h2>
-    <p class="text-gray-300 mb-4 max-w-prose">
-     This advanced terminal supports command history, tab completion, multi-line commands, color-coded output, and more.
-     Type <code class="bg-gray-700 px-1 rounded">help</code> to get started.
-    </p>
-   </section>
-   <section aria-label="terminal" class="terminal bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col h-[520px] max-h-[520px] overflow-y-auto" id="terminal" tabindex="0" role="region" aria-live="polite" aria-atomic="false">
-    <div class="flex-grow overflow-y-auto space-y-1 text-green-400" id="output" aria-live="polite" aria-atomic="false" role="log" aria-relevant="additions">
+</header>
+
+<section class="hero wrap">
+  <div>
+    <div class="hero-eyebrow-line">CONNECTIVITY &amp; SOFTWARE, UNDER ONE ROOF</div>
+    <h1 class="headline">We build the network, then we build what runs on it.</h1>
+    <p class="lede">Lyarinet designs and operates internet infrastructure — fiber, wireless, and dedicated links — and builds the software that businesses run on top of it. One team, from the cable to the code.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start a project</a>
+      <a href="#networking" class="btn-ghost">See what we run</a>
     </div>
-    <form autocomplete="off" class="mt-2 flex items-center space-x-2" id="input-form" spellcheck="false" aria-label="Command input form">
-     <span class="text-green-400 select-none font-semibold" id="prompt-label">
-      lyarinet.com&gt;
-     </span>
-     <textarea aria-labelledby="prompt-label" aria-multiline="true" class="flex-grow resize-none bg-gray-900 text-green-400 border border-green-600 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500 leading-relaxed max-h-24 min-h-[1.5rem]" id="command-input" placeholder="Type a command..." rows="1" spellcheck="false"></textarea>
-     <button aria-label="Submit command" class="ml-1 bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded transition flex items-center justify-center" type="submit" id="submit-btn" disabled>
-      <i class="fas fa-terminal">
-      </i>
-     </button>
-    </form>
-   </section>
-   <section class="mt-8 max-w-prose text-gray-400 text-sm">
-    <p>
-     Supported commands:
-    </p>
-    <ul class="list-disc list-inside space-y-1 mt-2">
-     <li>
-      <code>
-       help
-      </code>
-      - Show available commands
-     </li>
-     <li>
-      <code>
-       echo [text]
-      </code>
-      - Print text
-     </li>
-     <li>
-      <code>
-       date
-      </code>
-      - Show current date and time
-     </li>
-     <li>
-      <code>
-       clear
-      </code>
-      - Clear the terminal output
-     </li>
-     <li>
-      <code>
-       about
-      </code>
-      - Show info about Lyarinet.com
-     </li>
-     <li>
-      <code>
-       calc [expression]
-      </code>
-      - Calculate a math expression (supports +, -, *, /, %, ^, parentheses)
-     </li>
-     <li>
-      <code>
-       weather [city]
-      </code>
-      - Show current weather for a city (mocked data)
-     </li>
-     <li>
-      <code>
-       history
-      </code>
-      - Show command history
-     </li>
-     <li>
-      <code>
-       reverse [text]
-      </code>
-      - Reverse the given text string
-     </li>
-     <li>
-      <code>
-       uptime
-      </code>
-      - Show how long the terminal has been running
-     </li>
-     <li>
-      <code>
-       joke
-      </code>
-      - Show a random programming joke
-     </li>
-     <li>
-      <code>
-       base64 encode [text]
-      </code>
-      - Encode text to Base64
-     </li>
-     <li>
-      <code>
-       base64 decode [text]
-      </code>
-      - Decode Base64 text
-     </li>
-     <li>
-      <code>
-       clearhistory
-      </code>
-      - Clear the command history
-     </li>
-    </ul>
-   </section>
-  </main>
-  <footer class="bg-gray-800 text-gray-400 text-center py-4 text-sm select-none">
-   © 2024 Asifagaria. All rights reserved.
-  </footer>
-  <script>
-   (() => {
-      const outputEl = document.getElementById('output');
-      const inputForm = document.getElementById('input-form');
-      const commandInput = document.getElementById('command-input');
-      const submitBtn = document.getElementById('submit-btn');
+    <div class="hero-stats">
+      <div><b>10ms–2ms</b><span>Local network latency</span></div>
+      <div><b>24 / 7</b><span>Network operations</span></div>
+      <div><b>4</b><span>OS platforms shipped natively</span></div>
+    </div>
+  </div>
 
-      // Command history
-      let history = [];
-      let historyIndex = -1;
+  <div class="sphere-stage">
+    <div class="sphere-ring"></div>
+    <div class="sphere-ring r2"></div>
+    <div class="sphere-ring r3"></div>
+    <div class="sphere" id="sphere">
+      <div class="tilt" id="tilt"></div>
+    </div>
+    <div class="sphere-core"></div>
+  </div>
+</section>
 
-      // Terminal uptime tracking
-      const startTime = Date.now();
+<section id="networking">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rail"></div>
+      <div>
+        <div class="section-tag">NETWORKING SOLUTIONS</div>
+        <h2 class="section-title">Infrastructure we design, install, and monitor ourselves.</h2>
+        <p class="section-sub">No resold capacity, no third-party guesswork. Every link on this list is something our own engineers configure and keep running.</p>
+      </div>
+    </div>
 
-      // Programming jokes
-      const jokes = [
-        "Why do programmers prefer dark mode? Because light attracts bugs!",
-        "A SQL query walks into a bar, walks up to two tables and asks: 'Can I join you?'",
-        "Why do Java developers wear glasses? Because they don't see sharp.",
-        "There are 10 types of people in the world: those who understand binary and those who don't.",
-        "Debugging: Being the detective in a crime movie where you are also the murderer.",
-      ];
+    <div class="trace-list">
+      <div class="trace-item">
+        <div><span class="trace-num">FIBER</span><h3>Fiber-to-the-premises</h3></div>
+        <p>Dedicated fiber runs for homes, offices, and campuses, with symmetric upload and download and no shared contention during peak hours.</p>
+      </div>
+      <div class="trace-item">
+        <div><span class="trace-num">WIRELESS</span><h3>Point-to-point wireless links</h3></div>
+        <p>Line-of-sight microwave and radio links for sites where trenching fiber isn't practical — deployed in days, not months.</p>
+      </div>
+      <div class="trace-item">
+        <div><span class="trace-num">LEASED LINE</span><h3>Dedicated enterprise circuits</h3></div>
+        <p>Uncontended, SLA-backed bandwidth for offices, data centers, and branch connectivity, with guaranteed uptime commitments.</p>
+      </div>
+      <div class="trace-item">
+        <div><span class="trace-num">VPN / SD-WAN</span><h3>Site-to-site &amp; remote access networking</h3></div>
+        <p>Secure tunnels connecting branch offices, remote teams, and cloud environments into one managed private network.</p>
+      </div>
+      <div class="trace-item">
+        <div><span class="trace-num">SECURITY</span><h3>Network security &amp; monitoring</h3></div>
+        <p>Firewalls, intrusion detection, and 24/7 traffic monitoring built into every link we deploy, not sold as an add-on.</p>
+      </div>
+      <div class="trace-item">
+        <div><span class="trace-num">HOSTING</span><h3>Colocation &amp; managed hosting</h3></div>
+        <p>Rack space, power, and connectivity in our facilities for businesses that need their infrastructure close to the backbone.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      // Tab completion data
-      const commandList = [
-        'help', 'echo', 'date', 'clear', 'about', 'calc', 'weather', 'history',
-        'reverse', 'uptime', 'joke', 'base64', 'clearhistory'
-      ];
+<section id="software" style="background:var(--ink-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rail"></div>
+      <div>
+        <div class="section-tag">SOFTWARE DEVELOPMENT</div>
+        <h2 class="section-title">Software built by people who understand the network underneath it.</h2>
+        <p class="section-sub">Applications, systems, and tools designed to perform well on real-world connections, not just on a fast office link.</p>
+      </div>
+    </div>
 
-      // Mock weather data for stration
-      const mockWeatherData = {
-        'new york': { temp: 15, condition: 'Cloudy', icon: '☁️' },
-        'london': { temp: 10, condition: 'Rainy', icon: '🌧️' },
-        'paris': { temp: 18, condition: 'Sunny', icon: '☀️' },
-        'tokyo': { temp: 22, condition: 'Clear', icon: '🌤️' },
-        'sydney': { temp: 25, condition: 'Sunny', icon: '☀️' },
-      };
+    <div class="dev-grid">
+      <div class="dev-cell">
+        <svg class="dev-mark" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="1" stroke="#4FD1AE" stroke-width="1.4"/><path d="M3 8h18M8 20h8" stroke="#4FD1AE" stroke-width="1.4"/></svg>
+        <h3>Custom business software</h3>
+        <p>Internal tools, dashboards, and line-of-business systems built around how your team actually works.</p>
+      </div>
+      <div class="dev-cell">
+        <svg class="dev-mark" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#4FD1AE" stroke-width="1.4"/><path d="M3.5 12h17M12 3.5c2.6 2.4 4 5.4 4 8.5s-1.4 6.1-4 8.5c-2.6-2.4-4-5.4-4-8.5s1.4-6.1 4-8.5z" stroke="#4FD1AE" stroke-width="1.2"/></svg>
+        <h3>Web applications</h3>
+        <p>Responsive, fast-loading web platforms — from customer portals to internal admin systems.</p>
+      </div>
+      <div class="dev-cell">
+        <svg class="dev-mark" viewBox="0 0 24 24" fill="none"><rect x="6" y="2.5" width="12" height="19" rx="2" stroke="#4FD1AE" stroke-width="1.4"/><line x1="6" y1="18" x2="18" y2="18" stroke="#4FD1AE" stroke-width="1.4"/></svg>
+        <h3>Mobile applications</h3>
+        <p>Native and cross-platform mobile apps for Android and iOS, built to stay usable on slower connections.</p>
+      </div>
+      <div class="dev-cell">
+        <svg class="dev-mark" viewBox="0 0 24 24" fill="none"><path d="M6 17a4 4 0 010-8 5 5 0 019.6-1.6A4.5 4.5 0 0118 17H6z" stroke="#4FD1AE" stroke-width="1.4"/></svg>
+        <h3>Cloud &amp; DevOps</h3>
+        <p>Deployment pipelines, containerized infrastructure, and cloud environments we can host on our own network.</p>
+      </div>
+      <div class="dev-cell">
+        <svg class="dev-mark" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#4FD1AE" stroke-width="1.4"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="#4FD1AE" stroke-width="1.4"/><path d="M10 6.5h4a3.5 3.5 0 013.5 3.5v4" stroke="#4FD1AE" stroke-width="1.4"/></svg>
+        <h3>API &amp; systems integration</h3>
+        <p>Connecting existing tools, hardware, and third-party services into one coherent system.</p>
+      </div>
+      <div class="dev-cell">
+        <svg class="dev-mark" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1116 0" stroke="#4FD1AE" stroke-width="1.4"/><path d="M12 12l4-5" stroke="#4FD1AE" stroke-width="1.4"/><circle cx="12" cy="12" r="1.6" fill="#4FD1AE"/></svg>
+        <h3>Systems architecture</h3>
+        <p>Planning the infrastructure and software layer together so neither becomes the bottleneck.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      // Safe math expression evaluator (basic)
-      function safeEval(expr) {
-        if (!/^[0-9+\-*/%^().\s]+$/.test(expr)) {
-          throw new Error('Invalid characters in expression');
-        }
-        expr = expr.replace(/\^/g, '**');
-        return Function(`"use strict";return (${expr})`)();
-      }
+<section id="platforms">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rail"></div>
+      <div>
+        <div class="section-tag">CROSS-PLATFORM DELIVERY</div>
+        <h2 class="section-title">Whatever runs your business, we ship for it.</h2>
+        <p class="section-sub">Every application we build is native to the platform it runs on — no unfinished ports, no compromises.</p>
+      </div>
+    </div>
 
-      // Colorize output lines by type
-      function createOutputLine(text, type = 'normal') {
-        const line = document.createElement('div');
-        line.classList.add('whitespace-pre-wrap');
-        switch (type) {
-          case 'error':
-            line.classList.add('text-red-500', 'font-semibold');
-            break;
-          case 'info':
-            line.classList.add('text-blue-400');
-            break;
-          case 'success':
-            line.classList.add('text-green-400');
-            break;
-          case 'command':
-            line.classList.add('text-green-300', 'font-semibold');
-            break;
-          case 'warning':
-            line.classList.add('text-yellow-400');
-            break;
-          default:
-            line.classList.add('text-green-400');
-        }
-        line.textContent = text;
-        return line;
-      }
+    <div class="faceplate">
+      <div class="port">
+        <svg class="port-glyph" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" stroke="currentColor" stroke-width="1.5"/></svg>
+        <h4>Windows</h4>
+        <p style="color:var(--muted); font-size:13.5px;">Desktop &amp; enterprise builds</p>
+        <div class="led">ACTIVE</div>
+      </div>
+      <div class="port">
+        <svg class="port-glyph" viewBox="0 0 24 24" fill="none"><rect x="6" y="2.5" width="12" height="19" rx="2.5" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="17.5" x2="18" y2="17.5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="19.6" r="0.9" fill="currentColor"/></svg>
+        <h4>Android</h4>
+        <p style="color:var(--muted); font-size:13.5px;">Native mobile builds</p>
+        <div class="led">ACTIVE</div>
+      </div>
+      <div class="port">
+        <svg class="port-glyph" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="1.5"/></svg>
+        <h4>macOS</h4>
+        <p style="color:var(--muted); font-size:13.5px;">Native desktop builds</p>
+        <div class="led">ACTIVE</div>
+      </div>
+      <div class="port">
+        <svg class="port-glyph" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 9.5l3 2.5-3 2.5" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="11.5" y1="14.5" x2="16" y2="14.5" stroke="currentColor" stroke-width="1.5"/></svg>
+        <h4>Linux</h4>
+        <p style="color:var(--muted); font-size:13.5px;">Server &amp; workstation builds</p>
+        <div class="led">ACTIVE</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      // Print line to terminal output
-      function printLine(text, type = 'normal') {
-        const line = createOutputLine(text, type);
-        outputEl.appendChild(line);
-        outputEl.scrollTop = outputEl.scrollHeight;
-      }
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="stat-strip">
+      <div><b>99.95%</b><span>Network uptime</span></div>
+      <div><b>12+</b><span>Years operating infrastructure</span></div>
+      <div><b>140+</b><span>Businesses connected</span></div>
+      <div><b>&lt;15min</b><span>Average support response</span></div>
+    </div>
+  </div>
+</section>
 
-      // Print multi-line output
-      function printLines(lines, type = 'normal') {
-        lines.forEach(line => printLine(line, type));
-      }
+<section class="cta-band">
+  <div class="wrap">
+    <div class="section-tag" style="margin-bottom:14px;">GET STARTED</div>
+    <h2>Tell us what you're building or where you need to connect. We'll take it from there.</h2>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Contact Lyarinet</a>
+      <a href="#networking" class="btn-ghost">Review our services</a>
+    </div>
+  </div>
+</section>
 
-      // Base64 encode/decode helpers
-      function base64Encode(str) {
-        try {
-          return btoa(unescape(encodeURIComponent(str)));
-        } catch {
-          return null;
-        }
-      }
-      function base64Decode(str) {
-        try {
-          return decodeURIComponent(escape(atob(str)));
-        } catch {
-          return null;
-        }
-      }
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
+            <circle cx="8" cy="8" r="3.4" fill="#E8A33D"/>
+            <circle cx="32" cy="8" r="3.4" fill="#4FD1AE"/>
+            <circle cx="8" cy="32" r="3.4" fill="#4FD1AE"/>
+            <circle cx="32" cy="32" r="3.4" fill="#E8A33D"/>
+            <circle cx="20" cy="20" r="4.2" fill="#EDEAE0"/>
+            <path d="M8 8L20 20M32 8L20 20M8 32L20 20M32 32L20 20" stroke="#EDEAE0" stroke-width="1.2" stroke-opacity="0.5"/>
+          </svg>
+          <div class="brand-name">Lyari<span>net</span></div>
+        </div>
+        <p style="max-width:280px;">Internet infrastructure and software, built and operated by the same team.</p>
+      </div>
+      <div>
+        <h5>SERVICES</h5>
+        <a href="#networking">Networking Solutions</a>
+        <a href="#software">Software Development</a>
+        <a href="#platforms">Cross-platform Delivery</a>
+      </div>
+      <div>
+        <h5>CONTACT</h5>
+        <a href="mailto:hello@lyarinet.com">hello@lyarinet.com</a>
+        <a href="tel:+920000000000">+92 000 000 0000</a>
+        <p>Karachi, Pakistan</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LYARINET</span>
+      <span>NETWORK STATUS: OPERATIONAL</span>
+    </div>
+  </div>
+</footer>
 
-      // Command implementations
-      const commands = {
-        help() {
-          return [
-            'Available commands:',
-            'help - Show available commands',
-            'echo [text] - Print text',
-            'date - Show current date and time',
-            'clear - Clear the terminal output',
-            'about - Show info about Lyarinet.com',
-            'calc [expression] - Calculate a math expression (supports +, -, *, /, %, ^, parentheses)',
-            'weather [city] - Show current weather for a city (mocked data)',
-            'history - Show command history',
-            'reverse [text] - Reverse the given text string',
-            'uptime - Show how long the terminal has been running',
-            'joke - Show a random programming joke',
-            'base64 encode [text] - Encode text to Base64',
-            'base64 decode [text] - Decode Base64 text',
-            'clearhistory - Clear the command history',
-          ];
-        },
-        echo(args) {
-          if (args.length === 0) return [''];
-          return [args.join(' ')];
-        },
-        date() {
-          return [new Date().toString()];
-        },
-        clear() {
-          outputEl.innerHTML = '';
-          return [];
-        },
-        about() {
-          return [
-            'Lyarinet.com is a lightweight JavaScript framework for building reactive web apps.',
-            'This advanced terminal showcases a command interface with history, tab completion, multi-line input, and color-coded output.',
-            'Visit https://lyarinet.com for more information.',
-          ];
-        },
-        calc(args) {
-          if (args.length === 0) return ['Usage: calc [expression]'];
-          const expr = args.join(' ');
-          try {
-            const result = safeEval(expr);
-            return [`Result: ${result}`];
-          } catch (e) {
-            return [`Error: Invalid expression`];
-          }
-        },
-        weather(args) {
-          if (args.length === 0) return ['Usage: weather [city]'];
-          const city = args.join(' ').toLowerCase();
-          if (mockWeatherData[city]) {
-            const w = mockWeatherData[city];
-            return [
-              `Weather for ${city.charAt(0).toUpperCase() + city.slice(1)}:`,
-              `${w.icon}  ${w.condition}`,
-              `Temperature: ${w.temp}°C`,
-            ];
-          }
-          return [`No weather data found for "${city}"`];
-        },
-        history() {
-          if (history.length === 0) return ['No commands in history.'];
-          return history.map((cmd, i) => `${i + 1}: ${cmd}`);
-        },
-        reverse(args) {
-          if (args.length === 0) return ['Usage: reverse [text]'];
-          const text = args.join(' ');
-          const reversed = text.split('').reverse().join('');
-          return [reversed];
-        },
-        uptime() {
-          const diff = Date.now() - startTime;
-          const seconds = Math.floor(diff / 1000) % 60;
-          const minutes = Math.floor(diff / (1000 * 60)) % 60;
-          const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          let uptimeStr = '';
-          if (days) uptimeStr += `${days}d `;
-          if (hours) uptimeStr += `${hours}h `;
-          if (minutes) uptimeStr += `${minutes}m `;
-          uptimeStr += `${seconds}s`;
-          return [`Terminal uptime: ${uptimeStr}`];
-        },
-        joke() {
-          const joke = jokes[Math.floor(Math.random() * jokes.length)];
-          return [joke];
-        },
-        base64(args) {
-          if (args.length < 2) return ['Usage: base64 encode [text] OR base64 decode [text]'];
-          const action = args[0].toLowerCase();
-          const text = args.slice(1).join(' ');
-          if (action === 'encode') {
-            const encoded = base64Encode(text);
-            if (encoded === null) return ['Error: Unable to encode text'];
-            return [encoded];
-          } else if (action === 'decode') {
-            const decoded = base64Decode(text);
-            if (decoded === null) return ['Error: Invalid Base64 text'];
-            return [decoded];
-          } else {
-            return ['Usage: base64 encode [text] OR base64 decode [text]'];
-          }
-        },
-        clearhistory() {
-          history = [];
-          historyIndex = -1;
-          return ['Command history cleared.'];
-        },
-      };
+<script>
+  // build a fibonacci-sphere of nodes for the 3D hero animation
+  (function(){
+    var tilt = document.getElementById('tilt');
+    var count = 46;
+    var radius = 150;
+    for (var i = 0; i < count; i++){
+      var y = 1 - (i / (count - 1)) * 2;
+      var r = Math.sqrt(1 - y * y);
+      var theta = Math.PI * (3 - Math.sqrt(5)) * i;
+      var x = Math.cos(theta) * r;
+      var z = Math.sin(theta) * r;
+      var node = document.createElement('div');
+      node.className = 'node' + (i % 3 === 0 ? ' alt' : '');
+      node.style.transform = 'translate3d(' + (x*radius) + 'px,' + (y*radius) + 'px,' + (z*radius) + 'px)';
+      tilt.appendChild(node);
+    }
+  })();
+</script>
 
-      // Handle command input and output
-      function handleCommand(rawInput) {
-        if (!rawInput.trim()) return;
-        printLine(`lyarinet.com> ${rawInput}`, 'command');
-
-        history.push(rawInput);
-        historyIndex = history.length;
-
-        const parts = rawInput.trim().split(/\s+/);
-        const cmd = parts[0].toLowerCase();
-        const args = parts.slice(1);
-
-        if (commands[cmd]) {
-          const result = commands[cmd](args);
-          if (result.length) {
-            printLines(result, cmd === 'help' || cmd === 'about' ? 'info' : 'normal');
-          }
-        } else if (cmd === 'base64') {
-          // base64 is a special case handled above
-          const result = commands.base64(args);
-          if (result.length) {
-            printLines(result, 'normal');
-          }
-        } else {
-          printLine(`Command not found: ${cmd}`, 'error');
-        }
-      }
-
-      // Enable/disable submit button based on input
-      function updateSubmitButton() {
-        submitBtn.disabled = commandInput.value.trim().length === 0;
-      }
-
-      // Tab completion logic
-      function tabComplete() {
-        const val = commandInput.value;
-        const cursorPos = commandInput.selectionStart;
-        const beforeCursor = val.slice(0, cursorPos);
-        const afterCursor = val.slice(cursorPos);
-
-        // Find last word before cursor
-        const match = beforeCursor.match(/(\S+)$/);
-        if (!match) return;
-
-        const fragment = match[1].toLowerCase();
-
-        // Find matches from commandList
-        const matches = commandList.filter(c => c.startsWith(fragment));
-        if (matches.length === 0) return;
-
-        // If only one match, complete it
-        if (matches.length === 1) {
-          const completion = matches[0];
-          const newVal = beforeCursor.slice(0, beforeCursor.length - fragment.length) + completion + afterCursor;
-          commandInput.value = newVal;
-          const newCursorPos = beforeCursor.length - fragment.length + completion.length;
-          commandInput.setSelectionRange(newCursorPos, newCursorPos);
-          updateSubmitButton();
-        } else {
-          // Multiple matches: show suggestions
-          printLine('Possible completions:', 'info');
-          printLines(matches, 'info');
-        }
-      }
-
-      // Auto-grow textarea height
-      function autoGrowTextarea(el) {
-        el.style.height = 'auto';
-        el.style.height = (el.scrollHeight) + 'px';
-      }
-
-      // Keyboard shortcuts and input handling
-      commandInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey && !e.ctrlKey && !e.altKey) {
-          e.preventDefault();
-          if (commandInput.value.trim()) {
-            handleCommand(commandInput.value);
-            commandInput.value = '';
-            autoGrowTextarea(commandInput);
-            updateSubmitButton();
-          }
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (history.length === 0) return;
-          if (historyIndex > 0) historyIndex--;
-          commandInput.value = history[historyIndex] || '';
-          autoGrowTextarea(commandInput);
-          updateSubmitButton();
-        } else if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          if (history.length === 0) return;
-          if (historyIndex < history.length - 1) {
-            historyIndex++;
-            commandInput.value = history[historyIndex] || '';
-          } else {
-            historyIndex = history.length;
-            commandInput.value = '';
-          }
-          autoGrowTextarea(commandInput);
-          updateSubmitButton();
-        } else if (e.key === 'Tab') {
-          e.preventDefault();
-          tabComplete();
-        }
-      });
-
-      commandInput.addEventListener('input', () => {
-        autoGrowTextarea(commandInput);
-        updateSubmitButton();
-      });
-
-      // Initialize
-      updateSubmitButton();
-      autoGrowTextarea(commandInput);
-
-      // Mobile menu toggle
-      const menuBtn = document.getElementById('menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      // Focus terminal on page load and print welcome message
-      window.addEventListener('load', () => {
-        const welcomeLines = [
-          'Welcome to the Lyarinet.com Advanced Terminal!',
-          'Type "help" to see a list of available commands.',
-          'Enjoy your session.',
-          '',
-        ];
-        printLines(welcomeLines, 'info');
-        commandInput.focus();
-      });
-    })();
-  </script>
- </body>
+</body>
 </html>
