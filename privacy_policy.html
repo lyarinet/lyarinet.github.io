@@ -1,171 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - Shadow Switch</title>
-  <style>
-    :root {
-      --bg-color: #0d1117;
-      --card-bg: #161b22;
-      --text-main: #c9d1d9;
-      --text-heading: #f0f6fc;
-      --accent-color: #58a6ff;
-      --border-color: #30363d;
-      --badge-bg: #21262d;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 24px;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 36px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-    h1 {
-      color: var(--text-heading);
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-    .effective-date {
-      color: #8b949e;
-      font-size: 14px;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-color);
-    }
-    h2 {
-      color: var(--accent-color);
-      font-size: 20px;
-      margin-top: 28px;
-      margin-bottom: 12px;
-    }
-    p {
-      margin-bottom: 14px;
-    }
-    ul {
-      margin-left: 20px;
-      margin-bottom: 16px;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    .badge {
-      display: inline-block;
-      background: var(--badge-bg);
-      color: #7ee787;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 12px;
-      border: 1px solid rgba(126, 231, 135, 0.2);
-    }
-    a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .footer {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      font-size: 13px;
-      color: #8b949e;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Hidden Match: Tile Sort Quest</title>
+    <style>
+        :root {
+            --primary: #7C3AED;
+            --primary-dark: #4C1D95;
+            --bg: #0F172A;
+            --card-bg: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --accent: #F59E0B;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 24px 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 36px 32px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 19px;
+            color: #C084FC;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #E2E8F0;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: #CBD5E1;
+            font-size: 14.5px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            color: #CBD5E1;
+            font-size: 14.5px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        a {
+            color: #A855F7;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #C084FC;
+            text-decoration: underline;
+        }
+
+        .contact-card {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid var(--primary);
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 18px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 36px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="badge">Google Play Store Compliant</div>
-    <h1>Privacy Policy for Shadow Switch</h1>
-    <div class="effective-date">Last updated: September 10, 2026</div>
 
-    <p>
-      Thank you for playing <strong>Shadow Switch</strong> ("we", "our", or "the Game"). 
-      Your privacy is paramount to us. This Privacy Policy explains our practices regarding the collection, 
-      use, and disclosure of information when you download and play our mobile game.
-    </p>
+    <div class="container">
+        <header>
+            <h1>Privacy Policy</h1>
+            <div class="subtitle">Hidden Match: Tile Sort Quest</div>
+            <div class="meta">Last Updated: September 02, 2026 | Effective Date: September 02, 2026</div>
+        </header>
 
-    <h2>1. Information We Do Not Collect</h2>
-    <p>
-      <strong>Shadow Switch is an offline-first game.</strong> We do not collect, store, sell, or transmit any personally identifiable information (PII), such as your real name, email address, phone number, physical address, or biometric data.
-    </p>
-    <ul>
-      <li>No account registration or social login is required to play the game.</li>
-      <li>All game progress, level unlocks, coins, shadow crystals, and settings are stored locally on your device using encrypted local storage (SharedPreferences).</li>
-    </ul>
+        <section>
+            <p>Welcome to <strong>Hidden Match: Tile Sort Quest</strong> ("we", "our", or "us"). We respect your privacy and are committed to protecting any data associated with your use of our mobile application (Package Name: <code>com.hiddenmatch.game</code>).</p>
+        </section>
 
-    <h2>2. Third-Party Services & Advertising</h2>
-    <p>
-      For free-tier players, the Game displays advertisements to support ongoing development. These advertisements are powered by <strong>Google AdMob (Google Mobile Ads SDK)</strong>.
-    </p>
-    <p>
-      Third-party advertising partners may collect anonymized device identifiers and diagnostic data (such as advertising ID, crash logs, and coarse network information) to serve personalized or non-personalized ads in compliance with Google Play Policies.
-    </p>
-    <p>
-      Learn more about how Google uses data: 
-      <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">
-        Google Privacy & Terms
-      </a>.
-    </p>
+        <section>
+            <h2>1. Information We Do NOT Collect</h2>
+            <p>We do not collect, store, or share any personally identifiable information (PII) such as:</p>
+            <ul>
+                <li>Names, home addresses, phone numbers, or passwords</li>
+                <li>Device contact books, gallery photos, camera, or microphone access</li>
+                <li>Precise GPS location data</li>
+                <li>Payment, bank, or credit card information</li>
+            </ul>
+        </section>
 
-    <h2>3. In-App Purchases (Google Play Billing)</h2>
-    <p>
-      Shadow Switch offers optional digital purchases (such as "Remove Ads / Lifetime Offline Access").
-      All transactions and financial information are processed securely by <strong>Google Play Billing</strong>.
-      We do not collect, process, or store your credit card numbers, bank details, or billing address.
-    </p>
+        <section>
+            <h2>2. Automatically Collected Information & Third-Party SDKs</h2>
+            <p>The App integrates trusted third-party developer services to support advertisements, game updates, and crash diagnostics:</p>
+            
+            <h3>A. Google Mobile Ads (AdMob)</h3>
+            <p>We use Google AdMob to display banner, interstitial, and rewarded video ads. Google AdMob may collect anonymous device information, Advertising IDs (GAID/AAID), and ad performance metrics in compliance with Google Play Policies.</p>
+            <p>Learn more: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> & <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information</a>.</p>
 
-    <h2>4. Network Access & Permissions</h2>
-    <p>
-      The Game requests standard Android permissions necessary for gameplay features:
-    </p>
-    <ul>
-      <li><strong>INTERNET & ACCESS_NETWORK_STATE</strong>: Required for free players to load ads and check active connectivity. (Paid users can play 100% offline).</li>
-      <li><strong>com.android.vending.BILLING</strong>: Required to process in-app purchases securely via Google Play.</li>
-      <li><strong>MODIFY_AUDIO_SETTINGS</strong>: Required for low-latency game sound effects and hardware media volume routing.</li>
-    </ul>
+            <h3>B. Google Play Services</h3>
+            <p>Provides essential game framework support, achievements, and core Android services.</p>
+        </section>
 
-    <h2>5. Children’s Privacy</h2>
-    <p>
-      Shadow Switch does not knowingly collect any personal information from children under the age of 13. Our advertisements are configured to adhere to Google Play Families Policy guidelines.
-    </p>
+        <section>
+            <h2>3. Local Gameplay Data</h2>
+            <p>Your game levels, stars, high scores, collected stickers, and audio preferences are stored purely locally on your device using Android DataStore / SharedPreferences. You can wipe all local progress anytime inside the game Settings menu.</p>
+        </section>
 
-    <h2>6. Changes to This Privacy Policy</h2>
-    <p>
-      We may update our Privacy Policy periodically. Any updates will be posted on this page with a revised "Last updated" date.
-    </p>
+        <section>
+            <h2>4. Children's Privacy</h2>
+            <p><strong>Hidden Match</strong> is designed for general audiences and is fully family-friendly. We do not knowingly collect personal data from children under 13.</p>
+        </section>
 
-    <h2>7. Contact Us</h2>
-    <p>
-      If you have any questions or suggestions regarding this Privacy Policy, please contact us at:
-    </p>
-    <p>
-      <strong>Support Email:</strong> <a href="mailto:lyarinet@gmail.com">lyarinet@gmail.com</a><br>
-      <strong>Developer:</strong> LyariNet Games<br>
-      <strong>GitHub:</strong> <a href="https://github.com/lyarinet/Shadow-Switch" target="_blank">lyarinet/Shadow-Switch</a>
-    </p>
+        <section>
+            <h2>5. Opt-Out Rights (GDPR & CCPA)</h2>
+            <p>You may reset or delete your Google Advertising ID at any time through your Android device settings (<em>Settings &gt; Google &gt; Ads</em>).</p>
+        </section>
 
-    <div class="footer">
-      &copy; 2026 LyariNet. All Rights Reserved. Shadow Switch.
+        <section>
+            <h2>6. Contact Us</h2>
+            <div class="contact-card">
+                <p><strong>App:</strong> Hidden Match: Tile Sort Quest</p>
+                <p><strong>Support Email:</strong> <a href="mailto:asifagaria@gmail.com">asifagaria@gmail.com</a></p>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 Hidden Match: Tile Sort Quest. All Rights Reserved. by Lyaritech.com
+        </footer>
     </div>
-  </div>
+
 </body>
 </html>
