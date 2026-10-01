@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - MediaHUB</title>
+  <meta name="description" content="Privacy Policy for MediaHUB streaming player and client application.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090b10;
+      --card-bg: rgba(22, 27, 39, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-cyan: #00d2ff;
+      --accent-purple: #9d4edd;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --tag-bg: rgba(0, 210, 255, 0.1);
+      --tag-border: rgba(0, 210, 255, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(157, 78, 221, 0.18), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(0, 210, 255, 0.08), transparent 60%);
+      background-attachment: fixed;
+    }
+
+    header {
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(9, 11, 16, 0.85);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+    }
+
+    .brand-icon svg {
+      fill: #ffffff;
+      width: 18px;
+      height: 18px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .effective-date {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(0, 210, 255, 0.3);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    h2 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(0, 210, 255, 0.15);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 1rem 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    li::before {
+      content: "•";
+      color: var(--accent-cyan);
+      font-weight: bold;
+      font-size: 1.3rem;
+      position: absolute;
+      left: 0.2rem;
+      top: -0.15rem;
+    }
+
+    strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.08), rgba(157, 78, 221, 0.08));
+      border: 1px solid rgba(0, 210, 255, 0.25);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-box a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 500;
+      transition: text-decoration 0.2s;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      background: rgba(9, 11, 16, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </div>
+      MediaHUB
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero-badge">Google Play Store & GDPR Compliant</div>
+    <h1>Privacy Policy</h1>
+    <div class="effective-date">Last Updated: October 1, 2026 • Version 1.2</div>
+
+    <div class="card">
+      <h2><span class="num">1</span> Overview & Architecture</h2>
+      <p>
+        <strong>MediaHUB</strong> ("we", "our", or "us") provides a personal media streaming hub client application for Android, Android TV, and Web browsers.
+      </p>
+      <p>
+        MediaHUB operates on a <strong>client-server architecture</strong> designed for personal and home streaming. The app acts as a player that connects to your designated MediaHUB server instance. We respect your digital privacy and do not sell, track, or harvest your personal media library content or viewing habits.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">2</span> Information We Collect</h2>
+      <p>MediaHUB is engineered with privacy-by-design principles:</p>
+      <ul>
+        <li><strong>Account & Authentication Credentials:</strong> When you log into your MediaHUB server, authentication tokens (JWT) are stored securely on your local device (in encrypted local storage) to maintain your login session. These tokens are transmitted exclusively to your server host over secure HTTPS/WSS protocols.</li>
+        <li><strong>Playback Progress & State:</strong> Resume timestamps, watch history, and audio preferences (such as Dialogue Booster / Speech Clear toggle states) are stored locally and synced to your server database to provide seamless multi-device playback.</li>
+        <li><strong>Device Information:</strong> Basic device parameters (such as screen dimensions, OS type, and player audio capabilities) are processed strictly on-device to select compatible video codecs and audio formats.</li>
+        <li><strong>No Telemetry / No Ad Tracking:</strong> We do NOT employ third-party ad networks, tracking SDKs, behavioral analytics, or location trackers.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">3</span> Application Permissions & Usage</h2>
+      <p>The MediaHUB Android & Android TV applications request only the minimum system permissions necessary to provide media playback functionality:</p>
+      <ul>
+        <li><strong>INTERNET:</strong> Required to connect to your designated media server and stream audio/video content.</li>
+        <li><strong>ACCESS_NETWORK_STATE:</strong> Used to monitor network connectivity (Wi-Fi, Ethernet, Mobile) and smoothly adapt stream bitrates.</li>
+        <li><strong>WAKE_LOCK:</strong> Prevents the screen or device from going to sleep while a video or live stream is actively playing.</li>
+        <li><strong>FOREGROUND_SERVICE:</strong> Allows continuous audio and video playback when switching apps or controlling media via system notifications.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">4</span> Content & Copyright Responsibility</h2>
+      <p>
+        MediaHUB is a <strong>software media player</strong> (analogous to VLC, Kodi, or Jellyfin). The application itself does not bundle, host, or distribute proprietary media files or copyrighted broadcasts.
+      </p>
+      <p>
+        Users and server administrators are solely responsible for ensuring that any content streamed, stored, or indexed complies with applicable local and international copyright laws and Intellectual Property regulations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">5</span> Data Storage & Security</h2>
+      <p>
+        Your credentials and personal configuration reside exclusively on your device and your designated server. We employ industry-standard cryptographic techniques (salted Argon2/bcrypt password hashing, dynamic random JWT keys, HTTPS/TLS encryption) to secure all communication against unauthorized interception.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">6</span> Children's Privacy (COPPA Compliance)</h2>
+      <p>
+        MediaHUB does not knowingly collect or solicit personal identifiable information from children under the age of 13. Because no personal user data is collected by central third-party servers, our service complies with the Children's Online Privacy Protection Act (COPPA).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">7</span> User Rights & Data Deletion</h2>
+      <p>
+        You retain complete control over your data at all times. You can clear all cached credentials, watch history, and app data at any time directly through the application settings or the Android system Application Manager ("Clear Data"). Server administrators can purge user records instantly from the Admin Dashboard.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">8</span> Contact Us</h2>
+      <p>
+        If you have any questions, feedback, or concerns regarding this Privacy Policy or data privacy in MediaHUB, please contact our developer team:
+      </p>
+      <div class="contact-box">
+        <p><strong>MediaHUB Developer Team</strong></p>
+        <p>Email: <a href="mailto:support@lyarinet.com">support@lyarinet.com</a></p>
+        <p>Website: <a href="https://mb.lyarinet.com" target="_blank" rel="noopener">https://mb.lyarinet.com</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 MediaHUB. All rights reserved. Built for private and home media streaming.
+  </footer>
+
+</body>
+</html>
